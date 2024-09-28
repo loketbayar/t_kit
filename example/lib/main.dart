@@ -37,13 +37,11 @@ class _MyAppState extends State<MyApp> {
     initPlatformState();
   }
 
-  
   Future<void> initPlatformState() async {
     String platformVersion;
 
     try {
-      platformVersion = await _topwisePlugin.getPlatformVersion() ??
-          'Unknown platform version';
+      platformVersion = await _topwisePlugin.getPlatformVersion() ?? 'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -55,7 +53,6 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  
   Future<void> initPermission() async {
     try {
       await _topwisePlugin.requestPermission();
@@ -95,6 +92,15 @@ class _MyAppState extends State<MyApp> {
     try {
       var data = await _topwisePlugin.closeICCard();
       log('$data', name: 'closeICCard');
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<void> onFindMagCard() async {
+    try {
+      var data = await _topwisePlugin.onFindMagCard();
+      log('$data', name: 'onFindMagCard');
     } catch (e) {
       log(e.toString());
     }

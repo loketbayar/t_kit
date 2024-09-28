@@ -11,8 +11,7 @@ class MethodChannelTopwise extends TopwisePlatform {
 
   @override
   Future<String?> getPlatformVersion() async {
-    final version =
-        await methodChannel.invokeMethod<String>('getPlatformVersion');
+    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
   }
 
@@ -47,6 +46,11 @@ class MethodChannelTopwise extends TopwisePlatform {
   @override
   Future<String?> isICCardExist() async {
     return await methodChannel.invokeMethod<String>('isICCardExist');
+  }
+
+  @override
+  Future<String?> onFindMagCard() async {
+    return await methodChannel.invokeMethod<String>('onFindMagCard');
   }
   // End IC Card Feature
 

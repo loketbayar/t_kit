@@ -121,6 +121,24 @@ public class TopwisePlugin implements FlutterPlugin,
       result.success(null);
       return;
     }
+    /*
+      Magnetic Stripe Swipe
+     */
+
+    if (call.method.equals("onFindMagCard")) {
+      AidlMagCard magCardDev = DeviceServiceManager.getInstance().getMagCardReader();
+
+      new SwipeCardActivity(magCardDev).getTrackData(new SwipeCardActivity.SwipeCardCallback() {
+        @Override
+        public void onEventFinish(String value) {
+          new MethodChannel(pluginBinding.getBinaryMessenger(), dartChannel)
+                  .invokeMethod(universaDartChannellCallback, value);
+        }
+      });
+
+      result.success(null);
+      return;
+    }
 
     if (call.method.equals("cancelSwipe")){
       AidlMagCard magCardDev = DeviceServiceManager.getInstance().getMagCardReader();

@@ -4,9 +4,7 @@ import 'package:topwise/topwise.dart';
 import 'package:topwise/topwise_method_channel.dart';
 import 'package:topwise/topwise_platform_interface.dart';
 
-class MockTopwisePlatform
-    with MockPlatformInterfaceMixin
-    implements TopwisePlatform {
+class MockTopwisePlatform with MockPlatformInterfaceMixin implements TopwisePlatform {
   @override
   Future<String?> getPlatformVersion() => Future.value('42');
 
@@ -42,6 +40,12 @@ class MockTopwisePlatform
 
   @override
   Future<String?> isICCardExist() {
+    // TODO: implement isICCardExist
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<String?> onFindMagCard() {
     // TODO: implement isICCardExist
     throw UnimplementedError();
   }
@@ -105,7 +109,7 @@ class MockTopwisePlatform
     // TODO: implement getHardwareSN
     throw UnimplementedError();
   }
-  
+
   @override
   void universalCallback(Function callback) {
     // TODO: implement universalCallback

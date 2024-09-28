@@ -29,6 +29,10 @@ class Topwise {
     return TopwisePlatform.instance.isICCardExist();
   }
 
+  Future<String?> onFindMagCard() {
+    return TopwisePlatform.instance.onFindMagCard();
+  }
+
   Future<String?> openRFCard() {
     return TopwisePlatform.instance.openRFCard();
   }
@@ -69,6 +73,5 @@ class Topwise {
     return TopwisePlatform.instance.getHardwareSN();
   }
 
-  void universalCallback(Function callback) =>
-      TopwisePlatform.instance.universalCallback(callback);
+  void universalCallback(Function callback) => TopwisePlatform.instance.universalCallback(callback);
 }
