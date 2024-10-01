@@ -437,7 +437,7 @@ public class PrintDevActivity extends  BaseUtils {
             return;
         }
         final String orderNo = "1234567890123456541";
-        Bitmap bitmap =BitmapFactory.decodeResource(context.getResources(), R.drawable.nobu_bank_mini_bmp);;
+        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.nobu_bank_mini_bmp);
         try {
             PrintTemplate template = PrintTemplate.getInstance();
             template.init(context,null);
@@ -460,7 +460,9 @@ public class PrintDevActivity extends  BaseUtils {
             template.add(new TextUnit(getResString(R.string.print_noreff,context)+"01031000",TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_balance,context)+"Rp 031000",TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit("\n"));
-            template.add(new TextUnit(getResString(R.string.print_balancecheck_success,context)+"Rp 031000",TextSize.NORMAL,Align.CENTER.setBold(false));
+        
+            template.add(new TextUnit(getResString(R.string.print_balancecheck_success,context)+"Rp 031000", TextSize.NORMAL, Align.CENTER).setBold(false));
+
             template.add(new TextUnit("-----------------------------------------------------------",TextSize.NORMAL-2,Align.CENTER).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_customercopy,context),TextSize.NORMAL,Align.CENTER).setBold(false));
             printAddLineFree(template);
