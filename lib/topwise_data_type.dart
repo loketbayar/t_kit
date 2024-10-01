@@ -7,12 +7,6 @@ sealed class TopwiseDataType {
   static const String shellCMD = "shellCMD";
 }
 
-//
-// var dataTransfer = {
-//   "type" : "shellCMD",
-//   "data" : {},
-// };
-
 class ShellCMD extends TopwiseDataType {
   final String? serialNumber;
   ShellCMD({

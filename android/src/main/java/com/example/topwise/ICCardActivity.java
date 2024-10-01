@@ -309,6 +309,104 @@ public class ICCardActivity extends BaseUtils{
 						}
 					});
 
+					@Override
+                    public void onSuccess(TrackData trackData)
+                            throws RemoteException {
+                        isSwipeCard = false;
+
+                        Map<String, String> dataMap = new HashMap<>();
+
+                        dataMap.put("firstTrackData", trackData.getFirstTrackData());
+                        dataMap.put("secondTrackData", trackData.getSecondTrackData());
+                        dataMap.put("thirdTrackData", trackData.getThirdTrackData());
+                        dataMap.put("cardNo", trackData.getCardno());
+                        dataMap.put("expiryDate", trackData.getExpiryDate());
+                        dataMap.put("formattedTrackData", trackData.getFormatTrackData());
+                        dataMap.put("serviceCode", trackData.getServiceCode());
+
+                        ObjectMapper objectMapper = new ObjectMapper();
+
+                        try {
+                            data = objectMapper.writeValueAsString(dataMap);
+
+                            Log.d("onSuccess", "onSuccess: "+objectMapper.writeValueAsString(dataMap));
+
+                            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (callback != null) {
+                                        callback.onEventFinish(data);
+                                    }
+                                }
+                            });
+
+                        } catch (JsonProcessingException e) {
+                            data = e.toString();
+
+                            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (callback != null) {
+                                        callback.onEventFinish(data);
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onGetTrackFail() throws RemoteException {
+                        isSwipeCard = false;
+                        Log.d("onGetTrackFail", "onGetTrackFail: ");
+
+                        data = "Input Card Failed";
+
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (callback != null) {
+                                    callback.onEventFinish(data);
+                                }
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void onError(int arg0) throws RemoteException {
+                        isSwipeCard = false;
+                        Log.d("onError", "onError: ");
+
+                        data = "Input Card Error";
+
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (callback != null) {
+                                    callback.onEventFinish(data);
+                                }
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCanceled() throws RemoteException {
+                        isSwipeCard = false;
+                        Log.d("onCanceled", "onCanceled: ");
+
+                        data = "Input Card Cancelled";
+
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (callback != null) {
+                                    callback.onEventFinish(data);
+                                }
+                            }
+                        });
+                    }
+                });
+
 				} else {
 
 					data = "Card Is Not Exist";

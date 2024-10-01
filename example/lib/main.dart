@@ -196,6 +196,15 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  Future<void> printBalanceInformation() async {
+    try {
+      var data = await _topwisePlugin.printBalanceInformation();
+      log('$data', name: 'printBalanceInformation');
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
   Future<void> getHardwareSN() async {
     try {
       var data = await _topwisePlugin.getHardwareSN();

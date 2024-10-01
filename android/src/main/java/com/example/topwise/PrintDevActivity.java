@@ -161,7 +161,7 @@ public class PrintDevActivity extends  BaseUtils {
             template.clear();
             int textSize = TextSize.NORMAL;
             template.add(new TextUnit("中国银联签购单",textSize,Align.CENTER));
-            template.add(new TextUnit("--------------------------------------------------------------------").setWordWrap(false));
+            template.add(new TextUnit("\n"));
             template.add(new TextUnit("商户名称：鼎智开发测试专用",textSize));
             template.add(new TextUnit("商户名称：鼎智开发测试专用",textSize));
             template.add(new TextUnit("商户号：123456789012345",textSize).setBold(true));
@@ -347,7 +347,17 @@ public class PrintDevActivity extends  BaseUtils {
             template.init(context,null);
             template.clear();
             template.add(new ImageUnit(Align.CENTER,bitmap,bitmap.getWidth(),bitmap.getHeight()));
+
+            template.add(new TextUnit("\n"));
+
             template.add(new TextUnit(getResString(R.string.print_title,context),TextSize.LARGE,Align.CENTER).setBold(false));
+
+            template.add(new TextUnit("\n"));
+
+            template.add(new TextUnit(getResString(R.string.print_merchantname,context),TextSize.NORMAL,Align.CENTER).setBold(true));
+
+            template.add(new TextUnit("\n"));
+
             template.add(new TextUnit(getResString(R.string.print_merchantname,context),TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_merchantno,context)+"00000000000",TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_terminalno,context)+"100000000",TextSize.NORMAL,Align.LEFT).setBold(false));
@@ -374,12 +384,85 @@ public class PrintDevActivity extends  BaseUtils {
             template.add(new TextUnit(getResString(R.string.print_acknowledge,context),TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit("-----------------------------------------------------------",TextSize.NORMAL-2,Align.CENTER).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_merchantcopy,context),TextSize.NORMAL,Align.CENTER).setBold(false));
-            bitmap = CodeUtil.createQRImage("sghgjhkkcddrrddddd123456789",300,300,null);
-            template.add(new ImageUnit(Align.CENTER,bitmap,300,300));
-            bitmap = CodeUtil.createQRImage("sghgjhkkcddrrddddd123456789",200,200,null);
-            template.add(new ImageUnit(Align.CENTER,bitmap,200,200));
-            bitmap = CodeUtil.createQRImage("sghgjhkkcddrrddddd123456789",180,180,null);
             template.add(new ImageUnit(Align.CENTER,bitmap,180,180));
+            printAddLineFree(template);
+            printerDev.addRuiImage(template.getPrintBitmap(),0);
+
+            String startTime = getCurTime();
+            printerDev.printRuiQueue(new AidlPrinterListener.Stub() {
+                @Override
+                public void onError(int i) throws RemoteException {
+                    data =context.getResources().getString(R.string.print_error_code) + i;
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (callback != null) {
+                                callback.onEventFinish(data);
+                            }
+                        }
+                    });
+                }
+                @Override
+                public void onPrintFinish() throws RemoteException {
+                    printGertec(callback);
+                }
+
+            });
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            data =e.toString();
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    if (callback != null) {
+                        callback.onEventFinish(data);
+                    }
+                }
+            });
+        }
+    }
+
+
+    public void printBalanceInformation(PrintDevCallBack callback, Context context) {
+        if (printerDev == null) {
+            data ="Failed to get print service!";
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    if (callback != null) {
+                        callback.onEventFinish(data);
+                    }
+                }
+            });
+            return;
+        }
+        final String orderNo = "1234567890123456541";
+        Bitmap bitmap =BitmapFactory.decodeResource(context.getResources(), R.drawable.nobu_bank_mini_bmp);;
+        try {
+            PrintTemplate template = PrintTemplate.getInstance();
+            template.init(context,null);
+            template.clear();
+            template.add(new ImageUnit(Align.CENTER,bitmap,bitmap.getWidth(),bitmap.getHeight()));
+            template.add(new TextUnit("\n"));
+            template.add(new TextUnit(getResString(R.string.print_title,context),TextSize.LARGE,Align.CENTER).setBold(false));
+            template.add(new TextUnit("\n"));
+            template.add(new TextUnit(getResString(R.string.print_merchantname,context),TextSize.NORMAL,Align.CENTER).setBold(true));
+            template.add(new TextUnit("\n"));
+            template.add(new TextUnit(getResString(R.string.print_title_type_balance,context),TextSize.LARGE,Align.CENTER).setBold(true));
+            template.add(new TextUnit("\n"));
+            template.add(new TextUnit(getResString(R.string.print_tid,context)+"00000000000",TextSize.NORMAL,Align.LEFT).setBold(false));
+            template.add(new TextUnit(getResString(R.string.print_mid,context)+"100000000",TextSize.NORMAL,Align.LEFT).setBold(false));
+            template.add(new TextUnit(getResString(R.string.print_datetime,context)+"2017/10/10 11:11:11",TextSize.NORMAL,Align.LEFT).setBold(false));
+            template.add(new TextUnit("\n"));
+            template.add(new TextUnit(getResString(R.string.print_bankname,context)+"01",TextSize.NORMAL,Align.LEFT).setBold(false));
+            template.add(new TextUnit(getResString(R.string.print_cardnumber,context)+"6214444******0095  1",TextSize.NORMAL,Align.LEFT).setBold(false));
+            template.add(new TextUnit(getResString(R.string.print_accountnumber,context)+"01021000",TextSize.NORMAL,Align.LEFT).setBold(false));
+            template.add(new TextUnit(getResString(R.string.print_noreff,context)+"01031000",TextSize.NORMAL,Align.LEFT).setBold(false));
+            template.add(new TextUnit(getResString(R.string.print_balance,context)+"Rp 031000",TextSize.NORMAL,Align.LEFT).setBold(false));
+            template.add(new TextUnit("\n"));
+            template.add(new TextUnit(getResString(R.string.print_balancecheck_success,context)+"Rp 031000",TextSize.NORMAL,Align.CENTER.setBold(false));
+            template.add(new TextUnit("-----------------------------------------------------------",TextSize.NORMAL-2,Align.CENTER).setBold(false));
+            template.add(new TextUnit(getResString(R.string.print_customercopy,context),TextSize.NORMAL,Align.CENTER).setBold(false));
             printAddLineFree(template);
             printerDev.addRuiImage(template.getPrintBitmap(),0);
 
@@ -605,7 +688,8 @@ public class PrintDevActivity extends  BaseUtils {
             PrintTemplate template = PrintTemplate.getInstance();
             template.init(context,null);
             template.clear();
-            template.add(new TextUnit(getResString(R.string.print_title,context),TextSize.LARGE,Align.CENTER).setBold(false));
+            template.add(new TextUnit(getResString('',context),TextSize.LARGE,Align.CENTER).setBold(false));
+            // template.add(new TextUnit(getResString(R.string.print_title,context),TextSize.LARGE,Align.CENTER).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_merchantname,context),TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_merchantno,context)+"00000000000",TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_terminalno,context)+"100000000",TextSize.NORMAL,Align.LEFT).setBold(false));
