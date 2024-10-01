@@ -440,8 +440,7 @@ public class PrintDevActivity extends  BaseUtils {
         // final String orderNo = "1234567890123456541";
 
         String orderNo = dataMap.get("orderNo") != null ? dataMap.get("orderNo").toString() : "0";
-        String balanceToString = (String) dataMap.get("balance");
-        String balance = String.valueOf(balanceToString);
+        String balance = dataMap.get("balance") != null ? dataMap.get("balance").toString() : "0";
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.nobu_bank_mini_bmp);
 
         try {
