@@ -108,9 +108,10 @@ class MethodChannelTopwise extends TopwisePlatform {
   }
 
   @override
-  Future<String?> printBalanceInformation() async {
-    return await methodChannel.invokeMethod<String>('printBalanceInformation');
+  Future<String?> printBalanceInformation(Map<String, dynamic> data) async {
+    return await methodChannel.invokeMethod<String>('printBalanceInformation', data);
   }
+
   // End Printer Feature
 
   // Shell CMD

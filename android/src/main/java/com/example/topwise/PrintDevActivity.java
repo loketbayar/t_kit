@@ -383,7 +383,7 @@ public class PrintDevActivity extends  BaseUtils {
             template.add(new TextUnit(getResString(R.string.print_signature,context),TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_acknowledge,context),TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit("-----------------------------------------------------------",TextSize.NORMAL-2,Align.CENTER).setBold(false));
-            template.add(new TextUnit(getResString(R.string.print_merchantcopy,context),TextSize.NORMAL,Align.CENTER).setBold(false));
+            template.add(new TextUnit(getResString(R.string.print_agentcopy,context),TextSize.NORMAL,Align.CENTER).setBold(false));
             template.add(new ImageUnit(Align.CENTER,bitmap,180,180));
             printAddLineFree(template);
             printerDev.addRuiImage(template.getPrintBitmap(),0);
@@ -423,7 +423,7 @@ public class PrintDevActivity extends  BaseUtils {
     }
 
 
-    public void printBalanceInformation(PrintDevCallBack callback, Context context) {
+    public void printBalanceInformation(PrintDevCallBack callback, Context context, Map<String, Object> dataMap) {
         if (printerDev == null) {
             data ="Failed to get print service!";
             new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -437,7 +437,11 @@ public class PrintDevActivity extends  BaseUtils {
             return;
         }
         final String orderNo = "1234567890123456541";
+
+        String orderNo = (String) dataMap.get("orderNo");
+        String balance = (String) dataMap.get("balance");
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.nobu_bank_mini_bmp);
+
         try {
             PrintTemplate template = PrintTemplate.getInstance();
             template.init(context,null);
@@ -458,7 +462,7 @@ public class PrintDevActivity extends  BaseUtils {
             template.add(new TextUnit(getResString(R.string.print_cardnumber,context)+"6214444******0095  1",TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_accountnumber,context)+"01021000",TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_noreff,context)+"01031000",TextSize.NORMAL,Align.LEFT).setBold(false));
-            template.add(new TextUnit(getResString(R.string.print_balance,context)+"Rp 031000",TextSize.NORMAL,Align.LEFT).setBold(false));
+            template.add(new TextUnit(getResString(balance,context)+"Rp 031000",TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit("\n"));
         
             template.add(new TextUnit(getResString(R.string.print_balancecheck_success,context)+"Rp 031000", TextSize.NORMAL, Align.CENTER).setBold(false));
@@ -661,7 +665,7 @@ public class PrintDevActivity extends  BaseUtils {
             template.add(new TextUnit(getResString(R.string.print_signature, context),TextSize.SMALL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_acknowledge, context),TextSize.SMALL,Align.LEFT).setBold(false));
             template.add(new TextUnit("----------------------------------------------------------------",TextSize.SMALL,Align.LEFT).setBold(false));
-            template.add(new TextUnit(getResString(R.string.print_merchantcopy, context),TextSize.SMALL,Align.LEFT).setBold(false));
+            template.add(new TextUnit(getResString(R.string.print_agentcopy, context),TextSize.SMALL,Align.LEFT).setBold(false));
             template.add(new TextUnit("\n\n"));
             printAddLineFree(template);
             printerDev.addRuiImage(template.getPrintBitmap(),0);
@@ -715,7 +719,7 @@ public class PrintDevActivity extends  BaseUtils {
             template.add(new TextUnit(getResString(R.string.print_signature,context),TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_acknowledge,context),TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit("----------------------------------------------------------------",TextSize.NORMAL,Align.LEFT).setBold(false));
-            template.add(new TextUnit(getResString(R.string.print_merchantcopy,context),TextSize.NORMAL,Align.LEFT).setBold(false));
+            template.add(new TextUnit(getResString(R.string.print_agentcopy,context),TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit("\n\n"));
             printAddLineFree(template);
             printerDev.addRuiImage(template.getPrintBitmap(),0);

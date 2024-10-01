@@ -69,8 +69,8 @@ class Topwise {
     return TopwisePlatform.instance.printTickertape();
   }
 
-  Future<String?> printBalanceInformation() {
-    return TopwisePlatform.instance.printBalanceInformation();
+  Future<String?> printBalanceInformation(Map<String, dynamic> data) {
+    return TopwisePlatform.instance.printBalanceInformation(data);
   }
 
   Future<String?> getHardwareSN() {

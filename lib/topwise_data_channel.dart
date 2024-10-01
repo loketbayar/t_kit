@@ -25,8 +25,7 @@ class TopwiseDataChannel {
 
   String toJson() => json.encode(toMap());
 
-  factory TopwiseDataChannel.fromJson(String source) =>
-      TopwiseDataChannel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory TopwiseDataChannel.fromJson(String source) => TopwiseDataChannel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() => 'TopwiseDataChannel(type: $type, data: $data)';
