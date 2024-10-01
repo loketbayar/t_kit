@@ -688,7 +688,6 @@ public class PrintDevActivity extends  BaseUtils {
             PrintTemplate template = PrintTemplate.getInstance();
             template.init(context,null);
             template.clear();
-            template.add(new TextUnit(getResString('',context),TextSize.LARGE,Align.CENTER).setBold(false));
             // template.add(new TextUnit(getResString(R.string.print_title,context),TextSize.LARGE,Align.CENTER).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_merchantname,context),TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_merchantno,context)+"00000000000",TextSize.NORMAL,Align.LEFT).setBold(false));
