@@ -29,6 +29,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
 
 /**
  *  print test
@@ -360,7 +362,6 @@ public class PrintDevActivity extends  BaseUtils {
 
             template.add(new TextUnit(getResString(R.string.print_merchantname,context),TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_merchantno,context)+"00000000000",TextSize.NORMAL,Align.LEFT).setBold(false));
-            template.add(new TextUnit(getResString(R.string.print_terminalno,context)+"100000000",TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_operator,context)+"01",TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_cardno,context)+"6214444******0095  1",TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_issno,context)+"01021000",TextSize.NORMAL,Align.LEFT).setBold(false));
@@ -436,10 +437,11 @@ public class PrintDevActivity extends  BaseUtils {
             });
             return;
         }
-        final String orderNo = "1234567890123456541";
+        // final String orderNo = "1234567890123456541";
 
-        String orderNo = (String) dataMap.get("orderNo");
-        String balance = (String) dataMap.get("balance");
+        String orderNo = dataMap.get("orderNo") != null ? dataMap.get("orderNo").toString() : "0";
+        String balanceToString = (String) dataMap.get("balance");
+        String balance = String.valueOf(balanceToString);
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.nobu_bank_mini_bmp);
 
         try {
@@ -643,7 +645,6 @@ public class PrintDevActivity extends  BaseUtils {
             template.add(new TextUnit(getResString(R.string.print_title, context),TextSize.NORMAL,Align.CENTER).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_merchantname, context),TextSize.SMALL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_merchantno, context)+"00000000000",TextSize.SMALL,Align.LEFT).setBold(false));
-            template.add(new TextUnit(getResString(R.string.print_terminalno, context)+"100000000",TextSize.SMALL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_operator, context)+"01",TextSize.SMALL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_cardno, context)+"6214444******0095  1",TextSize.SMALL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_issno, context)+"01021000",TextSize.SMALL,Align.LEFT).setBold(false));
@@ -697,7 +698,6 @@ public class PrintDevActivity extends  BaseUtils {
             // template.add(new TextUnit(getResString(R.string.print_title,context),TextSize.LARGE,Align.CENTER).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_merchantname,context),TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_merchantno,context)+"00000000000",TextSize.NORMAL,Align.LEFT).setBold(false));
-            template.add(new TextUnit(getResString(R.string.print_terminalno,context)+"100000000",TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_operator,context)+"01",TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_cardno,context)+"6214444******0095  1",TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_issno,context)+"01021000",TextSize.NORMAL,Align.LEFT).setBold(false));
