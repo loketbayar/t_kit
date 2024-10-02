@@ -425,9 +425,9 @@ public class PrintDevActivity extends  BaseUtils {
         }
     }
     
-    public void printBalancePendingInformation(PrintDevCallBack callback, Context context, Map<String, Object> data) {
+    public void printBalancePendingInformation(PrintDevCallBack callback, Context context, Map<String, Object> dataMap) {
         if (printerDev == null) {
-            data ="Failed to get print service！";
+            String data ="Failed to get print service";
             new Handler(Looper.getMainLooper()).post(new Runnable() {
                 @Override
                 public void run() {
@@ -439,22 +439,21 @@ public class PrintDevActivity extends  BaseUtils {
             return;
         }
 
-        LogUtil.d(data);
+        Log.d(dataMap);
 
-        String orderNo = data.get("orderNo") != null ? data.get("orderNo").toString() : "0";
-        String balance = data.get("balance") != null ? data.get("balance").toString() : "0";
-        String merchantName = data.get("merchantName") != null ? data.get("merchantName").toString() : "0";
-        String timestamp = data.get("timestamp") != null ? data.get("timestamp").toString() : "01 Des 2024 11:15";
-        String tid = data.get("tid") != null ? data.get("tid").toString() : "12345678911234";
-        String mid = data.get("mid") != null ? data.get("mid").toString() : "10000000001";
-        String merchantAdress = data.get("merchantAdress") != null ? data.get("merchantAdress").toString() : "10000000001";
-        String bankName = data.get("bankName") != null ? data.get("bankName").toString() : "10000000001";
-        String cardNumber = data.get("cardNumber") != null ? data.get("cardNumber").toString() : "10000000001";
-        String accountNumber = data.get("accountNumber") != null ? data.get("cardNumber").toString() : "10000000001";
-        String noReff = data.get("noReff") != null ? data.get("cardNumber").toString() : "10000000001";
+        String orderNo = dataMap.get("orderNo") != null ? dataMap.get("orderNo").toString() : "0";
+        String balance = dataMap.get("balance") != null ? dataMap.get("balance").toString() : "0";
+        String merchantName = dataMap.get("merchantName") != null ? dataMap.get("merchantName").toString() : "0";
+        String timestamp = dataMap.get("timestamp") != null ? dataMap.get("timestamp").toString() : "01 Des 2024 11:15";
+        String tid = dataMap.get("tid") != null ? dataMap.get("tid").toString() : "12345678911234";
+        String mid = dataMap.get("mid") != null ? dataMap.get("mid").toString() : "10000000001";
+        String merchantAdress = dataMap.get("merchantAdress") != null ? dataMap.get("merchantAdress").toString() : "10000000001";
+        String bankName = dataMap.get("bankName") != null ? dataMap.get("bankName").toString() : "10000000001";
+        String cardNumber = dataMap.get("cardNumber") != null ? dataMap.get("cardNumber").toString() : "10000000001";
+        String accountNumber = dataMap.get("accountNumber") != null ? dataMap.get("cardNumber").toString() : "10000000001";
+        String noReff = dataMap.get("noReff") != null ? dataMap.get("cardNumber").toString() : "10000000001";
 
         int textSize = TextSize.NORMAL;
-        final String orderNo = "1234567890123456541";
         Bitmap bitmap =BitmapFactory.decodeResource(context.getResources(), R.drawable.nobu_bank_mini_bmp);;
         try {
             PrintTemplate template = PrintTemplate.getInstance();
