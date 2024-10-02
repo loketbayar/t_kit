@@ -464,11 +464,11 @@ public class PrintDevActivity extends  BaseUtils {
 
             template.add(new TextUnit("\n"));
 
-            template.add(new TextUnit(getResString(R.string.print_title,context),TextSize.LARGE,Align.CENTER).setBold(false));
+            template.add(new TextUnit(merchantName,20,Align.CENTER).setBold(false));
 
             template.add(new TextUnit("\n"));
 
-            template.add(new TextUnit(getResString(R.string.print_merchantname,context),TextSize.NORMAL,Align.CENTER).setBold(true));
+            template.add(new TextUnit('INFORMASI SALDO',26,Align.CENTER).setBold(true));
 
             template.add(new TextUnit("\n"));
 
@@ -551,7 +551,7 @@ public class PrintDevActivity extends  BaseUtils {
         }
         // final String orderNo = "1234567890123456541";
 
-        LogUtil.d(dataMap);
+        Log.d(data);
 
         String orderNo = dataMap.get("orderNo") != null ? dataMap.get("orderNo").toString() : "0";
         String balance = dataMap.get("balance") != null ? dataMap.get("balance").toString() : "0";
