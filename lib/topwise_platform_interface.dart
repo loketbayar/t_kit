@@ -69,6 +69,8 @@ abstract class TopwisePlatform extends PlatformInterface {
   Future<String?> printTickertape();
 
   Future<String?> printBalanceInformation(Map<String, dynamic> data);
+
+  Future<String?> printBalancePendingInformation();
   // End Printer Feature
 
   // Shell CMD

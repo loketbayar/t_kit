@@ -379,6 +379,22 @@ public class TopwisePlugin implements FlutterPlugin,
       result.success(null);
       return;
     }
+
+     if (call.method.equals("printBalancePendingInformation")){
+      AidlPrinter aidlPrinter =DeviceServiceManager.getInstance().getPrintManager();
+
+      new PrintDevActivity(aidlPrinter, this.context).printTickertape(new PrintDevActivity.PrintDevCallBack() {
+        @Override
+        public void onEventFinish(String value) {
+          new MethodChannel(pluginBinding.getBinaryMessenger(), dartChannel)
+                  .invokeMethod(universaDartChannellCallback, value);
+        }
+      }, this.context);
+
+      result.success(null);
+      return;
+    }
+    
     /*
       End Printer
     */

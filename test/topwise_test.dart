@@ -111,6 +111,12 @@ class MockTopwisePlatform with MockPlatformInterfaceMixin implements TopwisePlat
   }
 
   @override
+  Future<String?> printBalancePendingInformation() {
+    // TODO: implement printTickertape
+    throw UnimplementedError();
+  }
+
+  @override
   Future<String?> getHardwareSN() {
     // TODO: implement getHardwareSN
     throw UnimplementedError();
