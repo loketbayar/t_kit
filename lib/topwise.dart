@@ -45,6 +45,10 @@ class Topwise {
     return TopwisePlatform.instance.isRFCardExists();
   }
 
+  Future<String?> cardReset() {
+    return TopwisePlatform.instance.cardReset();
+  }
+
   Future<String?> getUidRFCard() {
     return TopwisePlatform.instance.getUidRFCard();
   }
