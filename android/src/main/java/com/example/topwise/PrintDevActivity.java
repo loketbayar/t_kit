@@ -439,7 +439,8 @@ public class PrintDevActivity extends  BaseUtils {
             return;
         }
 
-        Log.d(dataMap);
+        Log.d("PrintDevActivity", "Data Map: " + dataMap.toString());
+
 
         String orderNo = dataMap.get("orderNo") != null ? dataMap.get("orderNo").toString() : "0";
         String balance = dataMap.get("balance") != null ? dataMap.get("balance").toString() : "0";
@@ -550,7 +551,7 @@ public class PrintDevActivity extends  BaseUtils {
         }
         // final String orderNo = "1234567890123456541";
 
-        Log.d(data);
+        Log.d("PrintDevActivity", "Data Map: " + dataMap.toString());
 
         String orderNo = dataMap.get("orderNo") != null ? dataMap.get("orderNo").toString() : "0";
         String balance = dataMap.get("balance") != null ? dataMap.get("balance").toString() : "0";
