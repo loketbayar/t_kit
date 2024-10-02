@@ -29,10 +29,6 @@ class Topwise {
     return TopwisePlatform.instance.isICCardExist();
   }
 
-  Future<String?> cardReset() {
-    return TopwisePlatform.instance.isICCardExist();
-  }
-
   Future<String?> onFindMagCard() {
     return TopwisePlatform.instance.onFindMagCard();
   }
