@@ -396,15 +396,16 @@ public class TopwisePlugin implements FlutterPlugin,
     }
 
      if (call.method.equals("printBalancePendingInformation")){
+      Map<String, Object> arguments = call.arguments();
       AidlPrinter aidlPrinter =DeviceServiceManager.getInstance().getPrintManager();
 
-      new PrintDevActivity(aidlPrinter, this.context).printTickertape(new PrintDevActivity.PrintDevCallBack() {
+      new PrintDevActivity(aidlPrinter, this.context).printBalancePendingInformation(new PrintDevActivity.PrintDevCallBack() {
         @Override
         public void onEventFinish(String value) {
           new MethodChannel(pluginBinding.getBinaryMessenger(), dartChannel)
                   .invokeMethod(universaDartChannellCallback, value);
         }
-      }, this.context);
+      }, this.context, arguments);
 
       result.success(null);
       return;

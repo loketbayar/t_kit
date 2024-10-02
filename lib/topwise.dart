@@ -73,8 +73,8 @@ class Topwise {
     return TopwisePlatform.instance.printBalanceInformation(data);
   }
 
-  Future<String?> printBalancePendingInformation() {
-    return TopwisePlatform.instance.printBalancePendingInformation();
+  Future<String?> printBalancePendingInformation(Map<String, dynamic> data) {
+    return TopwisePlatform.instance.printBalancePendingInformation(data);
   }
 
   Future<String?> apduComm() {

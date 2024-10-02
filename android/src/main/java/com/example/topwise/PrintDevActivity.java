@@ -425,7 +425,7 @@ public class PrintDevActivity extends  BaseUtils {
         }
     }
     
-    public void printBalancePendingInformation(PrintDevCallBack callback, Context context) {
+    public void printBalancePendingInformation(PrintDevCallBack callback, Context context, Map<String, Object> data) {
         if (printerDev == null) {
             data ="Failed to get print service！";
             new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -438,6 +438,20 @@ public class PrintDevActivity extends  BaseUtils {
             });
             return;
         }
+
+        LogUtil.d(data);
+
+        String orderNo = data.get("orderNo") != null ? data.get("orderNo").toString() : "0";
+        String balance = data.get("balance") != null ? data.get("balance").toString() : "0";
+        String merchantName = data.get("merchantName") != null ? data.get("merchantName").toString() : "0";
+        String timestamp = data.get("timestamp") != null ? data.get("timestamp").toString() : "01 Des 2024 11:15";
+        String tid = data.get("tid") != null ? data.get("tid").toString() : "12345678911234";
+        String mid = data.get("mid") != null ? data.get("mid").toString() : "10000000001";
+        String merchantAdress = data.get("merchantAdress") != null ? data.get("merchantAdress").toString() : "10000000001";
+        String bankName = data.get("bankName") != null ? data.get("bankName").toString() : "10000000001";
+        String cardNumber = data.get("cardNumber") != null ? data.get("cardNumber").toString() : "10000000001";
+        String accountNumber = data.get("accountNumber") != null ? data.get("cardNumber").toString() : "10000000001";
+        String noReff = data.get("noReff") != null ? data.get("cardNumber").toString() : "10000000001";
 
         int textSize = TextSize.NORMAL;
         final String orderNo = "1234567890123456541";
@@ -536,6 +550,8 @@ public class PrintDevActivity extends  BaseUtils {
             return;
         }
         // final String orderNo = "1234567890123456541";
+
+        LogUtil.d(dataMap);
 
         String orderNo = dataMap.get("orderNo") != null ? dataMap.get("orderNo").toString() : "0";
         String balance = dataMap.get("balance") != null ? dataMap.get("balance").toString() : "0";
