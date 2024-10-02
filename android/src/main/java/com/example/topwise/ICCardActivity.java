@@ -3,6 +3,8 @@ package com.example.topwise;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.RemoteException;
+import android.util.Log;
+
 
 import com.topwise.cloudpos.aidl.iccard.AidlICCard;
 
