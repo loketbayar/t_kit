@@ -77,6 +77,10 @@ class Topwise {
     return TopwisePlatform.instance.printBalancePendingInformation();
   }
 
+  Future<String?> apduComm() {
+    return TopwisePlatform.instance.apduComm();
+  }
+
   Future<String?> getHardwareSN() {
     return TopwisePlatform.instance.getHardwareSN();
   }
