@@ -5,7 +5,11 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Paint;
+import android.os.RemoteException;
+import android.print.PrinterInfo;
 import android.util.Log;
+import android.util.Printer;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,8 +19,13 @@ import com.topwise.cloudpos.aidl.camera.AidlCameraScanCode;
 import com.topwise.cloudpos.aidl.iccard.AidlICCard;
 import com.topwise.cloudpos.aidl.magcard.AidlMagCard;
 import com.topwise.cloudpos.aidl.printer.AidlPrinter;
+import com.topwise.cloudpos.aidl.printer.Align;
+import com.topwise.cloudpos.aidl.printer.PrintItemObj;
+import com.topwise.cloudpos.aidl.printer.PrintTemplate;
+import com.topwise.cloudpos.aidl.printer.TextUnit;
 import com.topwise.cloudpos.aidl.rfcard.AidlRFCard;
 import com.topwise.cloudpos.aidl.shellmonitor.AidlShellMonitor;
+import com.topwise.cloudpos.data.PrinterConstant;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -412,7 +421,21 @@ public class TopwisePlugin implements FlutterPlugin,
 
      if (call.method.equals("printBalancePendingInformation")){
       Map<String, Object> arguments = call.arguments();
-      AidlPrinter aidlPrinter =DeviceServiceManager.getInstance().getPrintManager();
+      AidlPrinter aidlPrinter = DeviceServiceManager.getInstance().getPrintManager();
+
+//       Map<String, Object> base64String = call.argument<String>("base64image");
+//       val decodedBytes = Base64.decode(base64String, Base64.DEFAULT);
+//       val bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size);
+
+      testPrint(aidlPrinter);
+
+       // Second choice if testPrint() is not working
+       // see https://github.com/devmedtz/flutter_topwise/blob/main/android/src/main/kotlin/com/ubx/flutter_topwise/MethodCallHandlerImpl.kt#L48
+       // https://github.com/devmedtz/flutter_topwise/blob/main/android/src/main/kotlin/com/ubx/flutter_topwise/MethodCallHandlerImpl.kt#L430
+//       PrintTemplate printTemplate = com.topwise.cloudpos.aidl.printer.PrintTemplate();
+//       printTemplate.add(new TextUnit("Test", TextUnit.TextSize.NORMAL, Align.CENTER));
+
+//      aidlPrinter.addText(29, , PrinterConstant.FontSize.NORMAL, "Test");
 
       new PrintDevActivity(aidlPrinter, this.context).printBalancePendingInformation(new PrintDevActivity.PrintDevCallBack() {
         @Override
@@ -514,4 +537,23 @@ public class TopwisePlugin implements FlutterPlugin,
         permissionTool.requestNecessaryPermissions(activity, deniedPermissions, REQUEST_CODE1);
     }
   }
+
+  public void testPrint(AidlPrinter aidlPrinter){
+    if(aidlPrinter!=null) {
+      try {
+        List<PrintItemObj> data = new ArrayList<PrintItemObj>();
+        PrintItemObj printItemObj1 = new PrintItemObj("Test Print 1");
+        PrintItemObj printItemObj2 = new PrintItemObj("Test Print 1");
+
+//        Log.i("PrinterState:" + aidlPrinter.getPrinterState());
+        data.add(printItemObj1);
+        data.add(printItemObj2);
+        aidlPrinter.printText(data, printListener);
+      } catch (RemoteException e) {
+        e.printStackTrace();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+  };
 }
