@@ -441,6 +441,15 @@ public class PrintDevActivity extends  BaseUtils {
 
         String orderNo = dataMap.get("orderNo") != null ? dataMap.get("orderNo").toString() : "0";
         String balance = dataMap.get("balance") != null ? dataMap.get("balance").toString() : "0";
+        String merchantName = dataMap.get("merchantName") != null ? dataMap.get("merchantName").toString() : "0";
+        String timestamp = dataMap.get("timestamp") != null ? dataMap.get("timestamp").toString() : "01 Des 2024 11:15";
+        String tid = dataMap.get("tid") != null ? dataMap.get("tid").toString() : "12345678911234";
+        String mid = dataMap.get("mid") != null ? dataMap.get("mid").toString() : "10000000001";
+        String merchantAdress = dataMap.get("merchantAdress") != null ? dataMap.get("merchantAdress").toString() : "10000000001";
+        String bankName = dataMap.get("bankName") != null ? dataMap.get("bankName").toString() : "10000000001";
+        String cardNumber = dataMap.get("cardNumber") != null ? dataMap.get("cardNumber").toString() : "10000000001";
+        String accountNumber = dataMap.get("accountNumber") != null ? dataMap.get("cardNumber").toString() : "10000000001";
+        String noReff = dataMap.get("noReff") != null ? dataMap.get("cardNumber").toString() : "10000000001";
         
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.nobu_bank_mini_bmp);
 
@@ -450,29 +459,31 @@ public class PrintDevActivity extends  BaseUtils {
             template.clear();
             template.add(new ImageUnit(Align.CENTER,bitmap,bitmap.getWidth(),bitmap.getHeight()));
             template.add(new TextUnit("\n"));
-            template.add(new TextUnit(getResString(R.string.print_title,context),TextSize.LARGE,Align.CENTER).setBold(false));
+            template.add(new TextUnit(merchantName,textSize,Align.CENTER).setBold(true));
             template.add(new TextUnit("\n"));
-            template.add(new TextUnit(getResString(R.string.print_merchantname,context),TextSize.NORMAL,Align.CENTER).setBold(true));
+            template.add(new TextUnit(merchantAdress,textSize,Align.CENTER).setBold(false));
             template.add(new TextUnit("\n"));
             template.add(new TextUnit(getResString(R.string.print_title_type_balance,context),TextSize.LARGE,Align.CENTER).setBold(true));
             template.add(new TextUnit("\n"));
-            template.add(new TextUnit(getResString(R.string.print_tid,context)+"00000000000",TextSize.NORMAL,Align.LEFT).setBold(false));
-            template.add(new TextUnit(getResString(R.string.print_mid,context)+"100000000",TextSize.NORMAL,Align.LEFT).setBold(false));
-            template.add(new TextUnit(getResString(R.string.print_datetime,context)+"2017/10/10 11:11:11",TextSize.NORMAL,Align.LEFT).setBold(false));
+            template.add(new TextUnit(getResString(R.string.print_tid, context) + "\t" + tid, TextSize.NORMAL, Align.LEFT).setBold(false));
+            template.add(new TextUnit(getResString(R.string.print_mid,context)+ "\t" + mid,TextSize.NORMAL,Align.LEFT).setBold(false));
+            template.add(new TextUnit(getResString(R.string.print_datetime,context) + "\t" + timestamp,TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit("\n"));
-            template.add(new TextUnit(getResString(R.string.print_bankname,context)+"01",TextSize.NORMAL,Align.LEFT).setBold(false));
-            template.add(new TextUnit(getResString(R.string.print_cardnumber,context)+"6214444******0095  1",TextSize.NORMAL,Align.LEFT).setBold(false));
-            template.add(new TextUnit(getResString(R.string.print_accountnumber,context)+"01021000",TextSize.NORMAL,Align.LEFT).setBold(false));
-            template.add(new TextUnit(getResString(R.string.print_noreff,context)+"01031000",TextSize.NORMAL,Align.LEFT).setBold(false));
+            template.add(new TextUnit(getResString(R.string.print_bankname,context)+ "\t" + bankName,TextSize.NORMAL,Align.LEFT).setBold(false));
+            template.add(new TextUnit(getResString(R.string.print_cardnumber,context)+ "\t"+ cardNumber,TextSize.NORMAL,Align.LEFT).setBold(false));
+            template.add(new TextUnit(getResString(R.string.print_accountnumber,context)+ "\t" + accountNumber,TextSize.NORMAL,Align.LEFT).setBold(false));
+            template.add(new TextUnit(getResString(R.string.print_noreff,context)+ "\t" + noReff,TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(balance));
             template.add(new TextUnit("\n"));
         
             template.add(new TextUnit(getResString(R.string.print_balancecheck_success,context)+"Rp 031000", TextSize.NORMAL, Align.CENTER).setBold(false));
 
-            template.add(new TextUnit("-----------------------------------------------------------",TextSize.NORMAL-2,Align.CENTER).setBold(false));
+            template.add(new TextUnit("-----------------------------------------------",TextSize.NORMAL-2,Align.CENTER).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_customercopy,context),TextSize.NORMAL,Align.CENTER).setBold(false));
+            template.add(new TextUnit("\n"));
+            template.add(new TextUnit(getResString(R.string.print_fyi,context),TextSize.NORMAL,Align.CENTER).setBold(false));
             printAddLineFree(template);
-            printerDev.addRuiImage(template.getPrintBitmap(),0);
+            // printerDev.addRuiImage(template.getPrintBitmap(),0);
 
             String startTime = getCurTime();
             printerDev.printRuiQueue(new AidlPrinterListener.Stub() {

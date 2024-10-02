@@ -659,6 +659,7 @@
 	<string name="print_title_type_transfer">TRANSFER</string>
 	<string name="print_merchantname">MERCHANT NAME:   TEST</string>
 	<string name="print_merchantno">MERCHANT NO:</string>
+	<string name="print_fyi">Harap Simpan Resi Sebagai Bukti Transaksi Yang Sah</string>
 
 	<string name="print_tid">TID</string>
 	<string name="print_mid">MID</string>
