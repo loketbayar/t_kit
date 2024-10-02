@@ -21,7 +21,7 @@ public class SwipeCardActivity {
 
     private AidlMagCard magCardDev = null; // 磁条卡设备
     private boolean isSwipeCard = false;
-    private final int timeOut =6 * 1000;
+    private final int timeOut =15 * 1000;
     private final byte keyIndex = 0x00;
     String data = "";
 

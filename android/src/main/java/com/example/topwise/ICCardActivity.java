@@ -242,6 +242,62 @@ public class ICCardActivity extends BaseUtils{
 		}
 	}
 
+	// public void cardReset(ICCardCallback callback) {
+	// 	if (isNormalVelocityClick(DELAY_TIME)) {
+	// 		try {
+	// 			byte[] dataInternal = iccard.reset(0x00);
+	// 			if (dataInternal != null && dataInternal.length != 0) {
+	// 				// Prepare IC card data map
+	// 				Map<String, String> dataMap = new HashMap<>();
+	// 				dataMap.put("resetData", HexUtil.bcd2str(dataInternal));
+
+	// 				ObjectMapper objectMapper = new ObjectMapper();
+
+	// 				try {
+	// 					data = objectMapper.writeValueAsString(dataMap);
+	// 					Log.d("cardResetSuccess", "cardResetSuccess: " + data);
+
+	// 					new Handler(Looper.getMainLooper()).post(() -> {
+	// 						if (callback != null) {
+	// 							callback.onEventFinish(data);
+	// 						}
+	// 					});
+	// 				} catch (JsonProcessingException e) {
+	// 					data = e.toString();
+	// 					new Handler(Looper.getMainLooper()).post(() -> {
+	// 						if (callback != null) {
+	// 							callback.onEventFinish(data);
+	// 						}
+	// 					});
+	// 				}
+	// 			} else {
+	// 				data = "IC Card Reset Failure";
+	// 				new Handler(Looper.getMainLooper()).post(() -> {
+	// 					if (callback != null) {
+	// 						callback.onEventFinish(data);
+	// 					}
+	// 				});
+	// 			}
+	// 		} catch (RemoteException e) {
+	// 			e.printStackTrace();
+	// 			data = e.toString();
+	// 			new Handler(Looper.getMainLooper()).post(() -> {
+	// 				if (callback != null) {
+	// 					callback.onEventFinish(data);
+	// 				}
+	// 			});
+	// 		}
+	// 	} else {
+	// 		data = "Do Not Click Quickly!";
+	// 		new Handler(Looper.getMainLooper()).post(() -> {
+	// 			if (callback != null) {
+	// 				callback.onEventFinish(data);
+	// 			}
+	// 		});
+	// 	}
+	// }
+
+
 	public void cardReset(ICCardCallback callback) {
 		if(isNormalVelocityClick(DELAY_TIME)) {
 			try {
@@ -293,60 +349,93 @@ public class ICCardActivity extends BaseUtils{
 		}
 	}
 
-	public void isExists(ICCardCallback callback) {//检卡有事会失败，复位后再次检测
-		if(isNormalVelocityClick(DELAY_TIME)) {
-			try {
-				boolean flag = iccard.isExist();
-				if (flag) {
+	// public void isExists(ICCardCallback callback) {
+	// 	if(isNormalVelocityClick(DELAY_TIME)) {
+	// 		try {
+	// 			boolean flag = iccard.isExist();
+	// 			if (flag) {
 
-					data = "Card Is Exist";
-					new Handler(Looper.getMainLooper()).post(new Runnable() {
-						@Override
-						public void run() {
-							if (callback != null) {
-								callback.onEventFinish(data);
-							}
-						}
-					});
+	// 				data = "Card Is Exist";
+	// 				new Handler(Looper.getMainLooper()).post(new Runnable() {
+	// 					@Override
+	// 					public void run() {
+	// 						if (callback != null) {
+	// 							callback.onEventFinish(data);
+	// 						}
+	// 					}
+	// 				});
 
 				
 
-				} else {
+	// 			} else {
 
+	// 				data = "Card Is Not Exist";
+	// 				new Handler(Looper.getMainLooper()).post(new Runnable() {
+	// 					@Override
+	// 					public void run() {
+	// 						if (callback != null) {
+	// 							callback.onEventFinish(data);
+	// 						}
+	// 					}
+	// 				});
+	// 			}
+	// 		} catch (RemoteException e) {
+	// 			e.printStackTrace();
+	// 			data = e.toString();
+	// 			new Handler(Looper.getMainLooper()).post(new Runnable() {
+	// 				@Override
+	// 				public void run() {
+	// 					if (callback != null) {
+	// 						callback.onEventFinish(data);
+	// 					}
+	// 				}
+	// 			});
+	// 		}
+	// 	} else {
+	// 		data = "Do Not Click Quickly !";
+	// 		new Handler(Looper.getMainLooper()).post(new Runnable() {
+	// 			@Override
+	// 			public void run() {
+	// 				if (callback != null) {
+	// 					callback.onEventFinish(data);
+	// 				}
+	// 			}
+	// 		});
+	// 	}
+	// }
+
+	public void isExists(ICCardCallback callback) {
+		if (isNormalVelocityClick(DELAY_TIME)) {
+			try {
+				boolean flag = iccard.isExist();
+				if (flag) {
+					data = "Card Is Exist";
+					postResult(data, callback);
+				} else {
 					data = "Card Is Not Exist";
-					new Handler(Looper.getMainLooper()).post(new Runnable() {
-						@Override
-						public void run() {
-							if (callback != null) {
-								callback.onEventFinish(data);
-							}
-						}
-					});
+					postResult(data, callback);
 				}
 			} catch (RemoteException e) {
+				Log.e("ErrorTag", e.toString());
 				e.printStackTrace();
 				data = e.toString();
-				new Handler(Looper.getMainLooper()).post(new Runnable() {
-					@Override
-					public void run() {
-						if (callback != null) {
-							callback.onEventFinish(data);
-						}
-					}
-				});
+				postResult(data, callback);
 			}
 		} else {
 			data = "Do Not Click Quickly !";
-			new Handler(Looper.getMainLooper()).post(new Runnable() {
-				@Override
-				public void run() {
-					if (callback != null) {
-						callback.onEventFinish(data);
-					}
-				}
-			});
+			postResult(data, callback);
 		}
 	}
 
+	private void postResult(final String data, final ICCardCallback callback) {
+		new Handler(Looper.getMainLooper()).post(new Runnable() {
+			@Override
+			public void run() {
+				if (callback != null) {
+					callback.onEventFinish(data);
+				}
+			}
+		});
+	}
 
 }
