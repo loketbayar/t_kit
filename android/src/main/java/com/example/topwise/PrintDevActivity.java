@@ -342,6 +342,8 @@ public class PrintDevActivity extends  BaseUtils {
             });
             return;
         }
+
+        int textSize = TextSize.NORMAL
         final String orderNo = "1234567890123456541";
         Bitmap bitmap =BitmapFactory.decodeResource(context.getResources(), R.drawable.nobu_bank_mini_bmp);;
         try {
@@ -452,6 +454,8 @@ public class PrintDevActivity extends  BaseUtils {
         String noReff = dataMap.get("noReff") != null ? dataMap.get("cardNumber").toString() : "10000000001";
         
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.nobu_bank_mini_bmp);
+
+        int textSize = TextSize.NORMAL;
 
         try {
             PrintTemplate template = PrintTemplate.getInstance();
