@@ -468,7 +468,7 @@ public class PrintDevActivity extends  BaseUtils {
 
             template.add(new TextUnit("\n"));
 
-            template.add(new TextUnit('INFORMASI SALDO',26,Align.CENTER).setBold(true));
+            template.add(new TextUnit(getResString(R.string.print_title_type_balance,context),TextSize.LARGE,Align.CENTER).setBold(true));
 
             template.add(new TextUnit("\n"));
 

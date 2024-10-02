@@ -655,7 +655,7 @@
 
 	<string name="print_title">POS SALES SLIP</string>
 	<string name="print_title_type_balance">INFO SALDO</string>
-	<string name="print_title_type_withdraw">INFO SALDO</string>
+	<string name="print_title_type_withdraw">INFO TARIK TUNAI</string>
 	<string name="print_title_type_transfer">TRANSFER</string>
 	<string name="print_merchantname">MERCHANT NAME:   TEST</string>
 	<string name="print_merchantno">MERCHANT NO:</string>
