@@ -343,7 +343,7 @@ public class PrintDevActivity extends  BaseUtils {
             return;
         }
 
-        int textSize = TextSize.NORMAL
+        int textSize = TextSize.NORMAL;
         final String orderNo = "1234567890123456541";
         Bitmap bitmap =BitmapFactory.decodeResource(context.getResources(), R.drawable.nobu_bank_mini_bmp);;
         try {
