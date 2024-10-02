@@ -463,7 +463,7 @@ public class PrintDevActivity extends  BaseUtils {
             template.add(new TextUnit(getResString(R.string.print_cardnumber,context)+"6214444******0095  1",TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_accountnumber,context)+"01021000",TextSize.NORMAL,Align.LEFT).setBold(false));
             template.add(new TextUnit(getResString(R.string.print_noreff,context)+"01031000",TextSize.NORMAL,Align.LEFT).setBold(false));
-            template.add(new TextUnit(getResString(balance,context)+"Rp 031000",TextSize.NORMAL,Align.LEFT).setBold(false));
+            template.add(new TextUnit(balance));
             template.add(new TextUnit("\n"));
         
             template.add(new TextUnit(getResString(R.string.print_balancecheck_success,context)+"Rp 031000", TextSize.NORMAL, Align.CENTER).setBold(false));
