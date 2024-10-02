@@ -178,6 +178,21 @@ public class TopwisePlugin implements FlutterPlugin,
       return;
     }
 
+    if (call.method.equals("apduComm")){
+      AidlICCard icCard = DeviceServiceManager.getInstance().getICCardReader();
+
+      new ICCardActivity(icCard).apduComm(new ICCardActivity.ICCardCallback() {
+        @Override
+        public void onEventFinish(String value) {
+          new MethodChannel(pluginBinding.getBinaryMessenger(), dartChannel)
+                  .invokeMethod(universaDartChannellCallback, value);
+        }
+      });
+
+      result.success(null);
+      return;
+    }
+
     if (call.method.equals("closeICCard")){
       AidlICCard icCard = DeviceServiceManager.getInstance().getICCardReader();
 

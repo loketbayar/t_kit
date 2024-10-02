@@ -44,6 +44,11 @@ class MethodChannelTopwise extends TopwisePlatform {
   }
 
   @override
+  Future<String?> apduComm() async {
+    return await methodChannel.invokeMethod<String>('apduComm');
+  }
+
+  @override
   Future<String?> isICCardExist() async {
     return await methodChannel.invokeMethod<String>('isICCardExist');
   }
