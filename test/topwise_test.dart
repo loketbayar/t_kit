@@ -129,6 +129,12 @@ class MockTopwisePlatform with MockPlatformInterfaceMixin implements TopwisePlat
   }
 
   @override
+  Future<String?> cardReset() {
+    // TODO: implement getHardwareSN
+    throw UnimplementedError();
+  }
+
+  @override
   void universalCallback(Function callback) {
     // TODO: implement universalCallback
   }

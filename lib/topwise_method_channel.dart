@@ -39,6 +39,11 @@ class MethodChannelTopwise extends TopwisePlatform {
   }
 
   @override
+  Future<String?> cardReset() async {
+    return await methodChannel.invokeMethod<String>('cardReset');
+  }
+
+  @override
   Future<String?> closeICCard() async {
     return await methodChannel.invokeMethod<String>('closeICCard');
   }

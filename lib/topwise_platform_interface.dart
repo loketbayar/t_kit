@@ -50,6 +50,8 @@ abstract class TopwisePlatform extends PlatformInterface {
 
   Future<String?> apduComm();
 
+  Future<String?> cardReset();
+
   Future<String?> isRFCardExists() {
     throw UnimplementedError('isRFCardExists() has not been implemented.');
   }
