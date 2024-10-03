@@ -41,6 +41,11 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry;
 
+import com.example.topwise.TopUpsdkManage;
+import com.example.topwise.TopUpsdkManage;
+
+
+
 /** TopwisePlugin */
 public class TopwisePlugin implements FlutterPlugin,
         MethodCallHandler,
@@ -556,4 +561,32 @@ public class TopwisePlugin implements FlutterPlugin,
       }
     }
   };
+
+  TopUsdkManage topUsdkManage = TopUsdkManage.getInstance();
+  topUsdkManage.init(this, new TopUsdkManage.InitListener() {
+      @Override
+      public void OnConnection(boolean ret) {
+        if (ret) {
+          ICardReader cardReader = topUsdkManage.getCardReader();
+          if (cardReader != null) {
+            cardReader.readCard(new CardReader.Callback() {
+              @Override
+              public void onCardRead(CardData cardData) {
+                // Proses data kartu
+                Log.d(TAG, "Kartu dibaca: " + cardData);
+              }
+
+              @Override
+              public void onError(Exception e) {
+                // Tangani error
+                Log.e(TAG, "Error membaca kartu: " + e.getMessage());
+              }
+            });
+          }
+
+        } else {
+          Log.e(TAG, "Koneksi gagal");
+        }
+      }
+    });
 }
