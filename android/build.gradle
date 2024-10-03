@@ -59,6 +59,7 @@ dependencies {
     implementation group: 'com.github.mhiew', name: 'android-pdf-viewer', version: '3.2.0-beta.1'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.14.0'
     implementation files('libs/T1_V2_20220219.jar')
+    implementation files('libs/TopTool_V2_0_2.jar')
 }
 
 
