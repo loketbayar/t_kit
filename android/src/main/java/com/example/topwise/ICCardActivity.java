@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.RemoteException;
 import android.util.Log;
-import com.eaxample.topwise.CardData
+import com.eaxample.topwise.CardData;
 
 
 import com.topwise.cloudpos.aidl.iccard.AidlICCard;
@@ -308,6 +308,8 @@ public class ICCardActivity extends BaseUtils{
 				if (null != dataInternal && dataInternal.length != 0) {
 
 					data = "IC Card Reset "+HexUtil.bcd2str(dataInternal);
+					cardData = new CardData(CardData.EReturnType.OK, CardData.ECardType.IC);
+					postResult(cardData, callback);
 					new Handler(Looper.getMainLooper()).post(new Runnable() {
 						@Override
 						public void run() {
