@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.RemoteException;
 import android.util.Log;
+import com.eaxample.topwise.CardData
 
 
 import com.topwise.cloudpos.aidl.iccard.AidlICCard;
@@ -412,7 +413,8 @@ public class ICCardActivity extends BaseUtils{
 				boolean flag = iccard.isExist();
 				if (flag) {
 					data = "Card Is Exist";
-					postResult(data, callback);
+					cardData = new CardData(CardData.EReturnType.OK, CardData.ECardType.IC);
+					postResult(cardData, callback);
 				} else {
 					data = "Card Is Not Exist";
 					postResult(data, callback);
