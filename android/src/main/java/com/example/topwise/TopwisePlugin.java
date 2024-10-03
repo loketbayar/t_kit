@@ -475,10 +475,9 @@ public class TopwisePlugin implements FlutterPlugin,
     /*
       End Shell CMD
      */
-  }
 
-  if (call.method.equals("startFindCard")) {
-      AidlICCard icCard = TopUsdkManage.getInstance().getIcc()
+    if (call.method.equals("startFindCard")) {
+      AidlICCard icCard = TopUsdkManage.getInstance().getIcc();
       new AidlICCard(icCard, this.context).startFindCard(new PrintDevActivity.PrintDevCallBack() {
           @Override
           public void onEventFinish(String value) {
@@ -490,6 +489,9 @@ public class TopwisePlugin implements FlutterPlugin,
       result.success(null);
       return;
     }
+  }
+
+  
 
 
   @Override
