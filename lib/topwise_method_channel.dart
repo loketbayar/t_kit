@@ -59,6 +59,11 @@ class MethodChannelTopwise extends TopwisePlatform {
   }
 
   @override
+  Future<String?> startFindCard() async {
+    return await methodChannel.invokeMethod<String>('startFindCard');
+  }
+
+  @override
   Future<String?> onFindMagCard() async {
     return await methodChannel.invokeMethod<String>('onFindMagCard');
   }

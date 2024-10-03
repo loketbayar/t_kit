@@ -41,6 +41,8 @@ abstract class TopwisePlatform extends PlatformInterface {
   Future<String?> onFindMagCard();
 
   Future<String?> isICCardExist();
+
+  Future<String?> startFindCard();
   // End IC Card Feature
 
   // RF Card Feature

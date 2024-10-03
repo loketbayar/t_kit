@@ -477,6 +477,20 @@ public class TopwisePlugin implements FlutterPlugin,
      */
   }
 
+  if (call.method.equals("startFindCard")) {
+      AidlICCard icCard = TopUsdkManage.getInstance().getIcc()
+      new AidlICCard(icCard, this.context).startFindCard(new PrintDevActivity.PrintDevCallBack() {
+          @Override
+          public void onEventFinish(String value) {
+              new MethodChannel(pluginBinding.getBinaryMessenger(), dartChannel)
+                      .invokeMethod(universaDartChannellCallback, value);
+          }
+      }, this.context);
+
+      result.success(null);
+      return;
+    }
+
 
   @Override
   public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
@@ -540,23 +554,25 @@ public class TopwisePlugin implements FlutterPlugin,
     }
   }
 
-  public void testPrint(AidlPrinter aidlPrinter){
-    if(aidlPrinter!=null) {
-      try {
-        List<PrintItemObj> data = new ArrayList<PrintItemObj>();
-        PrintItemObj printItemObj1 = new PrintItemObj("Test Print 1");
-        PrintItemObj printItemObj2 = new PrintItemObj("Test Print 1");
+//   public void testPrint(AidlPrinter aidlPrinter){
+//     if(aidlPrinter!=null) {
+//       try {
+//         List<PrintItemObj> data = new ArrayList<PrintItemObj>();
+//         PrintItemObj printItemObj1 = new PrintItemObj("Test Print 1");
+//         PrintItemObj printItemObj2 = new PrintItemObj("Test Print 1");
 
-//        Log.i("PrinterState:" + aidlPrinter.getPrinterState());
-        data.add(printItemObj1);
-        data.add(printItemObj2);
-        aidlPrinter.printText(data, printListener);
-      } catch (RemoteException e) {
-        e.printStackTrace();
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-    }
-  };
+// //        Log.i("PrinterState:" + aidlPrinter.getPrinterState());
+//         data.add(printItemObj1);
+//         data.add(printItemObj2);
+//         aidlPrinter.printText(data, printListener);
+//       } catch (RemoteException e) {
+//         e.printStackTrace();
+//       } catch (Exception e) {
+//         e.printStackTrace();
+//       }
+//     }
+//   };
+
+// WAIT YA
 
 }

@@ -10,8 +10,8 @@ import com.topwise.cloudpos.aidl.rfcard.AidlRFCard;
 import com.topwise.cloudpos.aidl.shellmonitor.AidlShellMonitor;
 import com.topwise.cloudpos.aidl.shellmonitor.InstructionSendDataCallback;
 import com.topwise.cloudpos.struct.BytesUtil;
-import com.topwise.manager.AppLog;
-import com.topwise.manager.TopUsdkManage;
+import com.example.topwise.AppLog;
+import com.example.topwise.TopUsdkManage;
 
 import com.example.topwise.ICardReader;
 import com.example.topwise.CardData;

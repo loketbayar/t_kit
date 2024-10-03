@@ -129,6 +129,12 @@ class MockTopwisePlatform with MockPlatformInterfaceMixin implements TopwisePlat
   }
 
   @override
+  Future<String?> startFindCard() {
+    // TODO: implement getHardwareSN
+    throw UnimplementedError();
+  }
+
+  @override
   Future<String?> cardReset() {
     // TODO: implement getHardwareSN
     throw UnimplementedError();

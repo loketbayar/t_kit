@@ -69,6 +69,10 @@ class Topwise {
     return TopwisePlatform.instance.getPrintState();
   }
 
+  Future<String?> startFindCard() {
+    return TopwisePlatform.instance.startFindCard();
+  }
+
   Future<String?> printTickertape() {
     return TopwisePlatform.instance.printTickertape();
   }
