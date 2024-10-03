@@ -1,4 +1,4 @@
-package com.topwise.manager.emv;
+package com.example.topwise.emv;
 
 import android.os.RemoteException;
 
@@ -10,22 +10,22 @@ import com.topwise.cloudpos.aidl.emv.level2.EmvKernelConfig;
 import com.topwise.cloudpos.aidl.emv.level2.EmvTerminalInfo;
 import com.topwise.cloudpos.aidl.pinpad.AidlPinpad;
 import com.topwise.cloudpos.struct.BytesUtil;
-import com.topwise.manager.AppLog;
-import com.topwise.manager.TopUsdkManage;
-import com.topwise.manager.emv.api.ITransProcessListener;
-import com.topwise.manager.emv.entity.Amounts;
-import com.topwise.manager.emv.entity.EmvEntity;
-import com.topwise.manager.emv.entity.EmvTransPraram;
-import com.topwise.manager.emv.enums.EOnlineResult;
-import com.topwise.manager.emv.enums.EmvResult;
-import com.topwise.manager.emv.impl.TransProcess;
-import com.topwise.manager.emv.utlis.EmvDefinition;
-import com.topwise.manager.emv.utlis.PayDataUtil;
-import com.topwise.manager.emv.utlis.TransUtlis;
+import com.example.topwise.AppLog;
+import com.example.topwise.TopUsdkManage;
+import com.example.topwise.emv.api.ITransProcessListener;
+import com.example.topwise.emv.entity.Amounts;
+import com.example.topwise.emv.entity.EmvEntity;
+import com.example.topwise.emv.entity.EmvTransPraram;
+import com.example.topwise.emv.enums.EOnlineResult;
+import com.example.topwise.emv.enums.EmvResult;
+import com.example.topwise.emv.impl.TransProcess;
+import com.example.topwise.emv.utlis.EmvDefinition;
+import com.example.topwise.emv.utlis.PayDataUtil;
+import com.example.topwise.emv.utlis.TransUtlis;
 
-import com.topwise.manager.emv.entity.EmvAidParam;
-import com.topwise.manager.emv.entity.EmvCapkParam;
-import com.topwise.manager.utlis.DataUtils;
+import com.example.topwise.emv.entity.EmvAidParam;
+import com.example.topwise.emv.entity.EmvCapkParam;
+import com.example.topwise.utlis.DataUtils;
 import com.topwise.toptool.api.packer.ITlv;
 import com.topwise.toptool.api.packer.TlvException;
 import com.topwise.toptool.impl.TopTool;

@@ -37,9 +37,9 @@ import com.topwise.cloudpos.aidl.system.AidlSystem;
 
 import com.example.topwise.ICardReader;
 import com.example.topwise.CardReader;
-import com.topwise.manager.emv.api.IEmv;
-import com.topwise.manager.emv.entity.EinputType;
-import com.topwise.manager.emv.impl.TransProcess;
+import com.example.topwise.emv.api.IEmv;
+import com.example.topwise.emv.entity.EinputType;
+import com.example.topwise.emv.impl.TransProcess;
 
 
 

@@ -1,15 +1,15 @@
-package com.topwise.manager.emv;
+package com.example.topwise.emv;
 
 import android.os.RemoteException;
 
 import com.topwise.cloudpos.aidl.emv.level2.AidlEmvL2;
 import com.topwise.cloudpos.aidl.emv.level2.AidlEntry;
 import com.topwise.cloudpos.struct.BytesUtil;
-import com.topwise.manager.AppLog;
-import com.topwise.manager.TopUsdkManage;
-import com.topwise.manager.emv.api.ITransProcessListener;
-import com.topwise.manager.emv.entity.InputParam;
-import com.topwise.manager.emv.enums.EmvResult;
+import com.example.topwise.AppLog;
+import com.example.topwise.TopUsdkManage;
+import com.example.topwise.emv.api.ITransProcessListener;
+import com.example.topwise.emv.entity.InputParam;
+import com.example.topwise.emv.enums.EmvResult;
 import com.topwise.toptool.api.convert.IConvert;
 import com.topwise.toptool.api.packer.ITlv;
 import com.topwise.toptool.api.packer.TlvException;
