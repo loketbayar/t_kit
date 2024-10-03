@@ -566,27 +566,27 @@ public class TopwisePlugin implements FlutterPlugin,
   topUsdkManage.init(this, new TopUsdkManage.InitListener() {
       @Override
       public void OnConnection(boolean ret) {
-        if (ret) {
-          ICardReader cardReader = topUsdkManage.getCardReader();
-          if (cardReader != null) {
-            cardReader.readCard(new CardReader.Callback() {
-              @Override
-              public void onCardRead(CardData cardData) {
-                // Proses data kartu
-                Log.d(TAG, "Kartu dibaca: " + cardData);
-              }
+          if (ret) {
+              ICardReader cardReader = topUsdkManage.getCardReader();
+              if (cardReader != null) {
+                  cardReader.readCard(new CardReader.Callback() {
+                      @Override
+                      public void onCardRead(CardData cardData) {
+                          // Proses data kartu
+                          Log.d(TAG, "Kartu dibaca: " + cardData);
+                      }
 
-              @Override
-              public void onError(Exception e) {
-                // Tangani error
-                Log.e(TAG, "Error membaca kartu: " + e.getMessage());
+                      @Override
+                      public void onError(Exception e) {
+                          // Tangani error
+                          Log.e(TAG, "Error membaca kartu: " + e.getMessage());
+                      }
+                  });
               }
-            });
+          } else {
+              Log.e(TAG, "Koneksi gagal");
           }
-
-        } else {
-          Log.e(TAG, "Koneksi gagal");
-        }
       }
-    });
+  });
+
 }
